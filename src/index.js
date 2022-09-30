@@ -4,9 +4,6 @@ import { mainTitle } from './components/mainTitle/mainTitle';
 import { affectedNumber } from './components/affectedNumber/affectedNumber';
 import { affectedType } from './components/affectedType/affectedType';
 
-import data from './data/names.json';
-console.log(data);
-
 import './assets/styles/index.scss';
 
 (() => {
