@@ -1,3 +1,4 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -22,6 +23,13 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Map of crimes',
+      template: path.join('src', 'assets', 'html', 'index.html'),
+      inject: 'body',
+    }),
+  ],
   devServer: {
     static: './dist',
   },

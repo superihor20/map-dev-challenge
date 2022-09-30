@@ -1,9 +1,10 @@
-import './styles/index.scss';
 import { appendChild, getElement } from './lib/dom';
 import { mainWrapper } from './components/mainWrapper/mainWrapper';
 import { mainTitle } from './components/mainTitle/mainTitle';
 import { affectedNumber } from './components/affectedNumber/affectedNumber';
 import { affectedType } from './components/affectedType/affectedType';
+
+import './assets/styles/index.scss';
 
 (() => {
   try {
