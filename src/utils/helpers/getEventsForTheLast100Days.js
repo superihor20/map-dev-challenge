@@ -7,13 +7,14 @@ export const getEventsForTheLast100Days = (events) => {
   for (let i = 0; i < events.length; i++) {
     const currentEvent = events[i];
 
-    if (getMs(currentEvent.from) > dateOneHundredDaysAgoInMs) {
+    if (
+      getMs(currentEvent.from) > dateOneHundredDaysAgoInMs ||
+      getMs(currentEvent.till) > dateOneHundredDaysAgoInMs
+    ) {
       neededEvents.push(currentEvent);
 
       continue;
     }
-
-    break;
   }
 
   return neededEvents;
