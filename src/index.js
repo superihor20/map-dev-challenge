@@ -3,6 +3,7 @@ import { appendChild, getElement } from './lib/dom';
 import { mainWrapper } from './components/mainWrapper/mainWrapper';
 import { mainTitle } from './components/mainTitle/mainTitle';
 import { affectedNumber } from './components/affectedNumber/affectedNumber';
+import { affectedType } from './components/affectedType/affectedType';
 
 (() => {
   try {
@@ -10,7 +11,8 @@ import { affectedNumber } from './components/affectedNumber/affectedNumber';
 
     const MainTitle = mainTitle('Crime topography');
     const AffectedNumber = affectedNumber(1234);
-    const MainWrapper = mainWrapper([MainTitle, AffectedNumber]);
+    const AffectedType = affectedType('Killed Militarists');
+    const MainWrapper = mainWrapper([MainTitle, AffectedNumber, AffectedType]);
 
     appendChild(root, MainWrapper);
   } catch (error) {

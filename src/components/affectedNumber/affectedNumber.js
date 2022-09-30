@@ -3,10 +3,10 @@ import { elementTypes } from '../../utils/constants/elementTypes';
 
 import styles from './affectedNumber.scss';
 
-export const affectedNumber = (amount) => {
+export const affectedNumber = (number) => {
   return createComponent({
     elementType: elementTypes.h1,
-    child: amount,
+    child: number,
     attributes: { class: styles.affectedNumber },
   });
 };
