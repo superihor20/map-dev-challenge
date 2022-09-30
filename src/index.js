@@ -3,8 +3,19 @@ import { mainWrapper } from './components/mainWrapper/mainWrapper';
 import { mainTitle } from './components/mainTitle/mainTitle';
 import { affectedNumber } from './components/affectedNumber/affectedNumber';
 import { affectedType } from './components/affectedType/affectedType';
+import { getMs } from './utils/helpers/dates.helpers';
+import { getEventsForTheLast100Days } from './utils/helpers/getEventsForTheLast100Days';
+import { sorting } from './utils/helpers/sorting';
 
 import './assets/styles/index.scss';
+
+import events from './data/events.json';
+
+const eventsForTheLast100Days = getEventsForTheLast100Days(
+  sorting(events, 'desc', 'from', getMs)
+);
+
+console.log(events, eventsForTheLast100Days);
 
 (() => {
   try {
