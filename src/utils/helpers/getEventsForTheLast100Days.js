@@ -2,20 +2,10 @@ import { getMs, subtractDaysFromNowDate } from './dates.helpers';
 
 export const getEventsForTheLast100Days = (events) => {
   const dateOneHundredDaysAgoInMs = getMs(subtractDaysFromNowDate(100));
-  const neededEvents = [];
 
-  for (let i = 0; i < events.length; i++) {
-    const currentEvent = events[i];
-
-    if (
-      getMs(currentEvent.from) > dateOneHundredDaysAgoInMs ||
-      getMs(currentEvent.till) > dateOneHundredDaysAgoInMs
-    ) {
-      neededEvents.push(currentEvent);
-
-      continue;
-    }
-  }
-
-  return neededEvents;
+  return events.filter(
+    ({ from, till }) =>
+      getMs(from) > dateOneHundredDaysAgoInMs ||
+      getMs(till) > dateOneHundredDaysAgoInMs
+  );
 };
