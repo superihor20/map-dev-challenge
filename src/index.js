@@ -7,6 +7,7 @@ import { getEventsForTheLast100Days } from './utils/helpers/getEventsForTheLast1
 import { groupEventsByDate } from './utils/helpers/groupEventsByDate';
 import { divisionsList } from './components/division/divisionsList/divisionsList';
 import { normalizeDate } from './utils/helpers/dates.helpers';
+import { calculateNumberOfEventsInOneDate } from './utils/helpers/calculateNumberOfEventsInOneDate';
 
 import './assets/styles/index.scss';
 
@@ -14,16 +15,24 @@ import events from './data/events.json';
 
 const maxDivisionHeight = 60;
 const eventsForTheLast100Days = getEventsForTheLast100Days(events);
-const goupedEvents = groupEventsByDate(eventsForTheLast100Days);
-const maxNumberOfEvents = Math.max(
-  ...Object.values(goupedEvents).map((e) => e.length)
+const goupedSortedByDateEvents = Object.fromEntries(
+  Object.entries(groupEventsByDate(eventsForTheLast100Days)).sort()
 );
-const divisionsData = Object.entries(goupedEvents).map(([date, events]) => {
-  return {
-    height: (events.length / maxNumberOfEvents) * maxDivisionHeight,
+
+const maxNumberOfEvents = Math.max(
+  ...Object.values(goupedSortedByDateEvents).map(
+    calculateNumberOfEventsInOneDate
+  )
+);
+
+const divisionsData = Object.entries(goupedSortedByDateEvents).map(
+  ([date, events]) => ({
+    height:
+      (calculateNumberOfEventsInOneDate(events) / maxNumberOfEvents) *
+      maxDivisionHeight,
     date: normalizeDate(new Date(+date)),
-  };
-});
+  })
+);
 
 (() => {
   try {
