@@ -1,4 +1,4 @@
-import { oneDayInMs } from '../constants/dates.constants';
+import { months, oneDayInMs } from '../constants/dates.constants';
 
 export const getMs = (date) => {
   return new Date(date).getTime();
@@ -14,6 +14,10 @@ export const getDate = (date) => {
 
 export const getMonth = (date) => {
   return new Date(date).getMonth() + 1;
+};
+
+export const getMonthName = (month, lang = 'en') => {
+  return months[lang][month];
 };
 
 export const normalizeDate = (date) => {
@@ -45,4 +49,10 @@ export const subtractDaysFromNowDate = (numberOfDaysToSubstract) => {
   now.setHours(0, 0, 0, 0);
 
   return now;
+};
+
+export const getReadableDate = (unreadebleDate) => {
+  const date = new Date(unreadebleDate);
+
+  return `${getDate(date)} ${getMonthName(getMonth(date))}, ${getYear(date)}`;
 };
