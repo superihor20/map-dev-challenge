@@ -4,7 +4,7 @@ import { divisionDate } from '../divisionDate/divisionDate';
 
 import classes from './divisionItem.scss';
 
-export const divisionItem = (height, date) => {
+export const divisionItem = (height, date, events) => {
   return createComponent({
     elementType: elementTypes.div,
     child: divisionDate(date),
@@ -12,5 +12,6 @@ export const divisionItem = (height, date) => {
       class: classes.divisionItem,
       style: `height: ${height}px`,
     },
+    events,
   });
 };

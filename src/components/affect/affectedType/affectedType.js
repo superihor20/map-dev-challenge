@@ -1,5 +1,5 @@
-import { createComponent } from '../../lib/createComponent';
-import { elementTypes } from '../../utils/constants/elementTypes';
+import { createComponent } from '../../../lib/createComponent';
+import { elementTypes } from '../../../utils/constants/elementTypes';
 
 import classes from './affectedType.scss';
 

@@ -4,10 +4,12 @@ import { divisionItem } from '../divisionItem/divisionItem';
 
 import classes from './divisionsList.scss';
 
-export const divisionsList = (divisions) => {
+export const divisionsList = (divisions, onClick) => {
   return createComponent({
     elementType: elementTypes.div,
-    child: divisions.map(({ height, date }) => divisionItem(height, date)),
+    child: divisions.map(({ height, date }, index) =>
+      divisionItem(height, date, { click: () => onClick(index) })
+    ),
     attributes: {
       class: classes.divisionsList,
     },
