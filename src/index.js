@@ -12,6 +12,7 @@ import { calculateNumberOfEventsInOneDate } from './utils/helpers/calculateNumbe
 import './assets/styles/index.scss';
 
 import events from './data/events.json';
+import { groupByAffectedType } from './utils/helpers/groupByAffectedType';
 
 const maxDivisionHeight = 60;
 const eventsForTheLast100Days = getEventsForTheLast100Days(events);
@@ -33,6 +34,12 @@ const divisionsData = Object.entries(goupedSortedByDateEvents).map(
     date: normalizeDate(new Date(+date)),
   })
 );
+
+const groupedByDateAndAffectedType = groupByAffectedType(
+  goupedSortedByDateEvents
+);
+
+console.log(groupedByDateAndAffectedType);
 
 (() => {
   try {
