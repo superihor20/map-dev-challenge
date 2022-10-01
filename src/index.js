@@ -4,14 +4,16 @@ import { mainTitle } from './components/mainTitle/mainTitle';
 import { affectedNumber } from './components/affectedNumber/affectedNumber';
 import { affectedType } from './components/affectedType/affectedType';
 import { getEventsForTheLast100Days } from './utils/helpers/getEventsForTheLast100Days';
+import { groupEventsByDate } from './utils/helpers/groupEventsByDate';
 
 import './assets/styles/index.scss';
 
 import events from './data/events.json';
 
 const eventsForTheLast100Days = getEventsForTheLast100Days(events);
+const goupedEvents = groupEventsByDate(eventsForTheLast100Days);
 
-console.log(events, eventsForTheLast100Days);
+console.log(goupedEvents);
 
 (() => {
   try {

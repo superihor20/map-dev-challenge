@@ -5,6 +5,10 @@ export const getEventsForTheLast100Days = (events) => {
   const suitableEvents = [];
 
   for (const event of events) {
+    if (!('affected_type' in event)) {
+      continue;
+    }
+
     if (getMs(event.from) > dateOneHundredDaysAgoInMs) {
       suitableEvents.push({ ...event });
       continue;
