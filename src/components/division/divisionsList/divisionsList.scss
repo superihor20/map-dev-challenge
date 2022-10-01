@@ -1,0 +1,9 @@
+@import '../../../assets/styles/variables.scss';
+
+.divisionsList {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-end;
+  gap: 2px;
+  border-bottom: 2px solid $division;
+}

@@ -5,15 +5,25 @@ import { affectedNumber } from './components/affectedNumber/affectedNumber';
 import { affectedType } from './components/affectedType/affectedType';
 import { getEventsForTheLast100Days } from './utils/helpers/getEventsForTheLast100Days';
 import { groupEventsByDate } from './utils/helpers/groupEventsByDate';
+import { divisionsList } from './components/division/divisionsList/divisionsList';
+import { normalizeDate } from './utils/helpers/dates.helpers';
 
 import './assets/styles/index.scss';
 
 import events from './data/events.json';
 
+const maxDivisionHeight = 60;
 const eventsForTheLast100Days = getEventsForTheLast100Days(events);
 const goupedEvents = groupEventsByDate(eventsForTheLast100Days);
-
-console.log(goupedEvents);
+const maxNumberOfEvents = Math.max(
+  ...Object.values(goupedEvents).map((e) => e.length)
+);
+const divisionsData = Object.entries(goupedEvents).map(([date, events]) => {
+  return {
+    height: (events.length / maxNumberOfEvents) * maxDivisionHeight,
+    date: normalizeDate(new Date(+date)),
+  };
+});
 
 (() => {
   try {
@@ -22,7 +32,14 @@ console.log(goupedEvents);
     const MainTitle = mainTitle('Crime topography');
     const AffectedNumber = affectedNumber(1234);
     const AffectedType = affectedType('Killed Militarists');
-    const MainWrapper = mainWrapper([MainTitle, AffectedNumber, AffectedType]);
+    const DivisionsList = divisionsList(divisionsData);
+
+    const MainWrapper = mainWrapper([
+      MainTitle,
+      AffectedNumber,
+      AffectedType,
+      DivisionsList,
+    ]);
 
     appendChild(root, MainWrapper);
   } catch (error) {

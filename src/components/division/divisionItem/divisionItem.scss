@@ -1,0 +1,18 @@
+@import '../../../assets/styles/variables.scss';
+
+.divisionItem {
+  width: 8px;
+  max-height: 60px;
+  background: $division;
+  transition: 0.3s;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background: $ash;
+
+    & > span {
+      display: block;
+    }
+  }
+}

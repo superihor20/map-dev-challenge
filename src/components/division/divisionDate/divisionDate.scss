@@ -1,0 +1,15 @@
+@import '../../../assets/styles/variables.scss';
+
+.divisionDate {
+  background: $dark;
+  position: absolute;
+  display: none;
+  bottom: -16px;
+  transform: translate(-50%, 100%);
+  width: max-content;
+  padding: 4px 8px;
+  color: $snow;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+}
