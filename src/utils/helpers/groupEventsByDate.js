@@ -1,4 +1,4 @@
-import { getMs } from './dates.helpers';
+import { getMs, getRangeOfDates } from './dates.helpers';
 
 export const groupEventsByDate = (events) => {
   const eventsGroupedByDate = {};
