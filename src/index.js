@@ -66,11 +66,18 @@ let buttonStatus = 'paused';
           return affectContainer(names.en.affected_type[type], number);
         })
       );
+
+      DivisionsList.querySelector('.divisionItemActive')?.classList.remove(
+        'divisionItemActive'
+      );
+      DivisionsList.childNodes?.[activeDivision]?.classList.add(
+        'divisionItemActive'
+      );
     };
 
     const startInterval = () => {
       if (!intervalId) {
-        intervalId = setInterval(change, 10);
+        intervalId = setInterval(change, 5000);
       }
     };
 

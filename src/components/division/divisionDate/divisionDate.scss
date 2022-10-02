@@ -12,4 +12,17 @@
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
+
+  &:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 10px solid #222222;
+    position: absolute;
+    top: 0;
+    transform: translate(-30%, -100%);
+    left: 50%;
+  }
 }

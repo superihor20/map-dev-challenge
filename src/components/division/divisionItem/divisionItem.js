@@ -9,7 +9,7 @@ export const divisionItem = (height, date, isDivisionActive) => {
     elementType: elementTypes.div,
     child: divisionDate(date),
     attributes: {
-      class: `divisionItem ${isDivisionActive ? 'divisionItem-active' : ''}`,
+      class: `divisionItem ${isDivisionActive ? 'divisionItemActive' : ''}`,
       style: `height: ${height}px`,
     },
   });
