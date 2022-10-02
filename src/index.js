@@ -53,6 +53,8 @@ let buttonStatus = 'paused';
       })
     );
 
+    const DivisionsList = divisionsList(divisionsData);
+
     const handleActiveDivision = (index) => {
       activeDateIndex = index;
       activeAffect = allAffects[activeDateIndex];
@@ -66,20 +68,9 @@ let buttonStatus = 'paused';
       );
     };
 
-    const change = () => {
-      const newActiveIndex = activeDateIndex + 1;
-
-      if (newActiveIndex > allAffects.length - 1) {
-        clearInterval(intervalId);
-        return;
-      }
-
-      handleActiveDivision(newActiveIndex);
-    };
-
     const startInterval = () => {
       if (!intervalId) {
-        intervalId = setInterval(change, 100);
+        intervalId = setInterval(change, 10);
       }
     };
 
@@ -101,7 +92,18 @@ let buttonStatus = 'paused';
       buttonStatus
     );
 
-    const DivisionsList = divisionsList(divisionsData, handleActiveDivision);
+    const change = () => {
+      const newActiveIndex = activeDateIndex + 1;
+
+      if (newActiveIndex > allAffects.length - 1) {
+        clearInterval(intervalId);
+        buttonStatus = 'paused';
+        PlayButton.setAttribute('data-status', buttonStatus);
+        return;
+      }
+
+      handleActiveDivision(newActiveIndex);
+    };
 
     const MainWrapper = mainWrapper([
       MainTitle,
