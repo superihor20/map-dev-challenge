@@ -18,6 +18,7 @@ import names from './data/names.json';
 import { ukraine } from './components/Ukraine/Ukraine';
 import { contentWrapper } from './components/contentWrapper/contentWrapper';
 
+const intervalTime = 5000;
 const maxDivisionHeight = 60;
 const eventsForTheLast100Days = getEventsForTheLast100Days(events);
 const goupedSortedByDateEvents = Object.fromEntries(
@@ -55,8 +56,6 @@ let buttonStatus = 'paused';
       })
     );
 
-    const DivisionsList = divisionsList(divisionsData, activeDivision);
-
     const handleActiveDivision = (index) => {
       activeDivision = index;
       activeAffect = allAffects[activeDivision];
@@ -69,17 +68,24 @@ let buttonStatus = 'paused';
         })
       );
 
-      DivisionsList.querySelector('.divisionItemActive')?.classList.remove(
+      getElement('.divisionItemActive')?.classList?.remove(
         'divisionItemActive'
       );
-      DivisionsList.childNodes?.[activeDivision]?.classList.add(
+
+      getElement('.divisionsList').childNodes?.[activeDivision]?.classList?.add(
         'divisionItemActive'
       );
     };
 
+    const DivisionsList = divisionsList(
+      divisionsData,
+      activeDivision,
+      handleActiveDivision
+    );
+
     const startInterval = () => {
       if (!intervalId) {
-        intervalId = setInterval(change, 5000);
+        intervalId = setInterval(change, intervalTime);
       }
     };
 
