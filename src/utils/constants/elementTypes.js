@@ -9,4 +9,5 @@ export const elementTypes = Object.freeze({
   h5: 'h5',
   h6: 'h6',
   button: 'button',
+  img: 'img',
 });

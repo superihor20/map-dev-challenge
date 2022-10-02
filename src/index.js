@@ -15,6 +15,8 @@ import './assets/styles/index.scss';
 
 import events from './data/events.json';
 import names from './data/names.json';
+import { ukraine } from './components/Ukraine/Ukraine';
+import { contentWrapper } from './components/contentWrapper/contentWrapper';
 
 const maxDivisionHeight = 60;
 const eventsForTheLast100Days = getEventsForTheLast100Days(events);
@@ -112,12 +114,10 @@ let buttonStatus = 'paused';
       handleActiveDivision(newActiveIndex);
     };
 
-    const MainWrapper = mainWrapper([
-      MainTitle,
-      Affects,
-      PlayButton,
-      DivisionsList,
-    ]);
+    const Ukraine = ukraine(PlayButton);
+    const ContentWrapper = contentWrapper([Affects, Ukraine]);
+
+    const MainWrapper = mainWrapper([MainTitle, ContentWrapper, DivisionsList]);
 
     appendChild(root, MainWrapper);
   } catch (error) {

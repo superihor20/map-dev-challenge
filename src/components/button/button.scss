@@ -6,6 +6,9 @@
   border: 1px solid $snow;
   background: url('../../assets/icons/play.svg') no-repeat center;
   cursor: pointer;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 
   &[data-status='playing'] {
     background-image: url('../../assets/icons/pause.svg');
