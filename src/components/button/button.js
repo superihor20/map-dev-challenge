@@ -1,14 +1,14 @@
 import { createComponent } from '../../lib/createComponent';
 import { elementTypes } from '../../utils/constants/elementTypes';
 
-import classes from './button.scss';
+import './button.scss';
 
 export const button = (text, events, isPlaying) => {
   return createComponent({
     elementType: elementTypes.button,
     child: text,
     attributes: {
-      class: `${classes.button}`,
+      class: `button`,
       type: 'button',
       'data-status': isPlaying,
     },
