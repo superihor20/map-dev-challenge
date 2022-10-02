@@ -21,13 +21,11 @@ const eventsForTheLast100Days = getEventsForTheLast100Days(events);
 const goupedSortedByDateEvents = Object.fromEntries(
   Object.entries(groupEventsByDate(eventsForTheLast100Days)).sort()
 );
-
 const maxNumberOfEvents = Math.max(
   ...Object.values(goupedSortedByDateEvents).map(
     calculateNumberOfEventsInOneDate
   )
 );
-
 const divisionsData = Object.entries(goupedSortedByDateEvents).map(
   ([date, events]) => ({
     height:
@@ -36,15 +34,12 @@ const divisionsData = Object.entries(goupedSortedByDateEvents).map(
     date: normalizeDate(new Date(+date)),
   })
 );
-
 const groupedByDateAndAffectedType = groupByAffectedType(
   goupedSortedByDateEvents
 );
-
 const allAffects = Object.entries(groupedByDateAndAffectedType);
 let activeDateIndex = 0;
 let activeAffect = allAffects[activeDateIndex];
-
 let intervalId;
 let buttonStatus = 'paused';
 
