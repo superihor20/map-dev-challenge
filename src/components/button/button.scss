@@ -1,0 +1,13 @@
+@import '../../assets/styles/variables.scss';
+
+.button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid $snow;
+  background: url('../../assets/icons/play.svg') no-repeat center;
+  cursor: pointer;
+
+  &[data-status='playing'] {
+    background-image: url('../../assets/icons/pause.svg');
+  }
+}

@@ -9,6 +9,7 @@ import { calculateNumberOfEventsInOneDate } from './utils/helpers/calculateNumbe
 import { groupByAffectedType } from './utils/helpers/groupByAffectedType';
 import { affectsList } from './components/affect/affectsList/affectsList';
 import { affectContainer } from './components/affect/affectContainer/affectContainer';
+import { button } from './components/button/button';
 
 import './assets/styles/index.scss';
 
@@ -44,6 +45,9 @@ const allAffects = Object.entries(groupedByDateAndAffectedType);
 let activeDateIndex = 0;
 let activeAffect = allAffects[activeDateIndex];
 
+let intervalId;
+let buttonStatus = 'paused';
+
 (() => {
   try {
     const root = getElement('#root');
@@ -67,9 +71,49 @@ let activeAffect = allAffects[activeDateIndex];
       );
     };
 
+    const change = () => {
+      const newActiveIndex = activeDateIndex + 1;
+
+      if (newActiveIndex > allAffects.length - 1) {
+        clearInterval(intervalId);
+        return;
+      }
+
+      handleActiveDivision(newActiveIndex);
+    };
+
+    const startInterval = () => {
+      if (!intervalId) {
+        intervalId = setInterval(change, 100);
+      }
+    };
+
+    const stopInterval = () => {
+      clearInterval(intervalId);
+
+      intervalId = null;
+    };
+
+    const PlayButton = button(
+      null,
+      {
+        click: () => {
+          buttonStatus === 'paused' ? startInterval() : stopInterval();
+          buttonStatus = buttonStatus === 'paused' ? 'playing' : 'paused';
+          PlayButton.setAttribute('data-status', buttonStatus);
+        },
+      },
+      buttonStatus
+    );
+
     const DivisionsList = divisionsList(divisionsData, handleActiveDivision);
 
-    const MainWrapper = mainWrapper([MainTitle, Affects, DivisionsList]);
+    const MainWrapper = mainWrapper([
+      MainTitle,
+      Affects,
+      PlayButton,
+      DivisionsList,
+    ]);
 
     appendChild(root, MainWrapper);
   } catch (error) {
