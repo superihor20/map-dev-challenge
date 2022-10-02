@@ -6,7 +6,7 @@ import classes from './divisionsList.scss';
 
 export const divisionsList = (divisions, onClick) => {
   return createComponent({
-    elementType: elementTypes.div,
+    elementType: elementTypes.p,
     child: divisions.map(({ height, date }, index) =>
       divisionItem(height, date, { click: () => onClick(index) })
     ),
