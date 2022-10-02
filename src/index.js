@@ -38,8 +38,8 @@ const groupedByDateAndAffectedType = groupByAffectedType(
   goupedSortedByDateEvents
 );
 const allAffects = Object.entries(groupedByDateAndAffectedType);
-let activeDateIndex = 0;
-let activeAffect = allAffects[activeDateIndex];
+let activeDivision = 0;
+let activeAffect = allAffects[activeDivision];
 let intervalId;
 let buttonStatus = 'paused';
 
@@ -53,11 +53,11 @@ let buttonStatus = 'paused';
       })
     );
 
-    const DivisionsList = divisionsList(divisionsData);
+    const DivisionsList = divisionsList(divisionsData, activeDivision);
 
     const handleActiveDivision = (index) => {
-      activeDateIndex = index;
-      activeAffect = allAffects[activeDateIndex];
+      activeDivision = index;
+      activeAffect = allAffects[activeDivision];
       Affects.innerHTML = '';
 
       appendChild(
@@ -93,7 +93,7 @@ let buttonStatus = 'paused';
     );
 
     const change = () => {
-      const newActiveIndex = activeDateIndex + 1;
+      const newActiveIndex = activeDivision + 1;
 
       if (newActiveIndex > allAffects.length - 1) {
         clearInterval(intervalId);

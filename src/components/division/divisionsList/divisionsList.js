@@ -4,10 +4,12 @@ import { divisionItem } from '../divisionItem/divisionItem';
 
 import './divisionsList.scss';
 
-export const divisionsList = (divisions) => {
+export const divisionsList = (divisions, activeDivision) => {
   return createComponent({
     elementType: elementTypes.div,
-    child: divisions.map(({ height, date }) => divisionItem(height, date)),
+    child: divisions.map(({ height, date }, index) =>
+      divisionItem(height, date, index === activeDivision)
+    ),
     attributes: {
       class: 'divisionsList',
     },

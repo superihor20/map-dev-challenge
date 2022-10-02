@@ -4,14 +4,13 @@ import { divisionDate } from '../divisionDate/divisionDate';
 
 import './divisionItem.scss';
 
-export const divisionItem = (height, date, events) => {
+export const divisionItem = (height, date, isDivisionActive) => {
   return createComponent({
     elementType: elementTypes.div,
     child: divisionDate(date),
     attributes: {
-      class: 'divisionItem',
+      class: `divisionItem ${isDivisionActive ? 'divisionItem-active' : ''}`,
       style: `height: ${height}px`,
     },
-    events,
   });
 };
