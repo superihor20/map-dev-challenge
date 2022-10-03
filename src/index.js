@@ -1,4 +1,4 @@
-import { appendChild, getElement } from './lib/dom';
+import { appendChild, getElement, getElements } from './lib/dom';
 import { mainWrapper } from './components/mainWrapper/mainWrapper';
 import { mainTitle } from './components/mainTitle/mainTitle';
 import { getEventsForTheLast100Days } from './utils/helpers/getEventsForTheLast100Days';
@@ -10,13 +10,14 @@ import { groupByAffectedType } from './utils/helpers/groupByAffectedType';
 import { affectsList } from './components/affect/affectsList/affectsList';
 import { affectContainer } from './components/affect/affectContainer/affectContainer';
 import { button } from './components/button/button';
+import { ukraine } from './components/Ukraine/Ukraine';
+import { contentWrapper } from './components/contentWrapper/contentWrapper';
+import { point } from './components/point/point';
 
 import './assets/styles/index.scss';
 
 import events from './data/events.json';
 import names from './data/names.json';
-import { ukraine } from './components/Ukraine/Ukraine';
-import { contentWrapper } from './components/contentWrapper/contentWrapper';
 
 const intervalTime = 5000;
 const maxDivisionHeight = 60;
@@ -57,6 +58,7 @@ let buttonStatus = 'paused';
     const handleActiveDivision = (index) => {
       activeDivision = index;
       activeAffect = allAffects[activeDivision];
+      const points = goupedSortedByDateEvents[activeDivision][1];
       Affects.innerHTML = '';
 
       appendChild(
@@ -72,6 +74,13 @@ let buttonStatus = 'paused';
 
       getElement('.divisionsList').childNodes?.[activeDivision]?.classList?.add(
         'divisionItemActive'
+      );
+
+      getElements('.point').forEach((e) => e.remove());
+
+      appendChild(
+        getElement('.Ukraine'),
+        points.map((e) => point(e.lat, e.lon))
       );
     };
 
@@ -117,7 +126,12 @@ let buttonStatus = 'paused';
       }
     };
 
-    const Ukraine = ukraine([PlayButton]);
+    const Ukraine = ukraine([
+      PlayButton,
+      ...goupedSortedByDateEvents[activeDivision][1].map((e) =>
+        point(e.lat, e.lon)
+      ),
+    ]);
     const ContentWrapper = contentWrapper([Affects, Ukraine]);
 
     const MainWrapper = mainWrapper([MainTitle, ContentWrapper, DivisionsList]);
