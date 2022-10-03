@@ -13,6 +13,7 @@ import { button } from './components/button/button';
 import { ukraine } from './components/Ukraine/Ukraine';
 import { contentWrapper } from './components/contentWrapper/contentWrapper';
 import { point } from './components/point/point';
+import { getBrowserLanguage } from './utils/helpers/getBrowserLanguage';
 
 import './assets/styles/index.scss';
 
@@ -21,6 +22,7 @@ import names from './data/names.json';
 
 const intervalTime = 5000;
 const maxDivisionHeight = 60;
+const browserLanguage = getBrowserLanguage();
 const eventsForTheLast100Days = getEventsForTheLast100Days(events);
 const goupedSortedByDateEvents = Object.entries(
   groupEventsByDate(eventsForTheLast100Days)
@@ -51,7 +53,10 @@ let buttonStatus = 'paused';
     const MainTitle = mainTitle('Crime topography');
     const Affects = affectsList(
       Object.entries(activeAffect[1]).map(([type, number]) => {
-        return affectContainer(names.en.affected_type[type], number);
+        return affectContainer(
+          names[browserLanguage].affected_type[type],
+          number
+        );
       })
     );
 
@@ -64,7 +69,10 @@ let buttonStatus = 'paused';
       appendChild(
         Affects,
         Object.entries(activeAffect[1]).map(([type, number]) => {
-          return affectContainer(names.en.affected_type[type], number);
+          return affectContainer(
+            names[browserLanguage].affected_type[type],
+            number
+          );
         })
       );
 

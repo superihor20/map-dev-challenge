@@ -4,10 +4,16 @@ import { divisionDate } from '../divisionDate/divisionDate';
 
 import './divisionItem.scss';
 
-export const divisionItem = (height, date, isDivisionActive, events) => {
+export const divisionItem = (
+  height,
+  date,
+  isDivisionActive,
+  events,
+  browserLanguage
+) => {
   return createComponent({
     elementType: elementTypes.div,
-    child: divisionDate(date),
+    child: divisionDate(date, browserLanguage),
     attributes: {
       class: `divisionItem ${isDivisionActive ? 'divisionItemActive' : ''}`,
       style: `height: ${height}px`,

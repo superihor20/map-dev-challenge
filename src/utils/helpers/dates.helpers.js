@@ -51,8 +51,10 @@ export const subtractDaysFromNowDate = (numberOfDaysToSubstract) => {
   return now;
 };
 
-export const getReadableDate = (unreadebleDate) => {
+export const getReadableDate = (unreadebleDate, lang) => {
   const date = new Date(unreadebleDate);
 
-  return `${getDate(date)} ${getMonthName(getMonth(date))}, ${getYear(date)}`;
+  return `${getDate(date)} ${getMonthName(getMonth(date), lang)}, ${getYear(
+    date
+  )}`;
 };
