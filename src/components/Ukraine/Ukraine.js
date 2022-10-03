@@ -15,7 +15,7 @@ export const ukraine = (child) => {
           src: UkraineSVG,
         },
       }),
-      child,
+      ...(Array.isArray(child) ? child : [child]),
     ],
     attributes: {
       class: 'Ukraine',
