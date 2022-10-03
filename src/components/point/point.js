@@ -4,8 +4,8 @@ import { convertLatAndLonToPercents } from '../../utils/helpers/convertLatAndLon
 
 import './point.scss';
 
-export const point = (lat, lan) => {
-  const pointPercentages = convertLatAndLonToPercents(lat, lan);
+export const point = (lat, lon) => {
+  const pointPercentages = convertLatAndLonToPercents(lat, lon);
 
   return createComponent({
     elementType: elementTypes.div,
