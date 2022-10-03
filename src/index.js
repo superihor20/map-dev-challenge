@@ -109,15 +109,14 @@ let buttonStatus = 'paused';
 
     const change = () => {
       const newActiveIndex = activeDivision + 1;
+      handleActiveDivision(newActiveIndex);
 
-      if (newActiveIndex > allAffects.length - 1) {
+      if (newActiveIndex >= allAffects.length - 1) {
         clearInterval(intervalId);
         buttonStatus = 'paused';
         PlayButton.setAttribute('data-status', buttonStatus);
         return;
       }
-
-      handleActiveDivision(newActiveIndex);
     };
 
     const Ukraine = ukraine(PlayButton);
