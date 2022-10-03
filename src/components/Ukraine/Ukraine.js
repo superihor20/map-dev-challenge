@@ -13,6 +13,7 @@ export const ukraine = (child) => {
         child: null,
         attributes: {
           src: UkraineSVG,
+          alt: 'Map of Ukraine',
         },
       }),
       ...(Array.isArray(child) ? child : [child]),
