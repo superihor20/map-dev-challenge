@@ -1,7 +1,7 @@
 import { appendChild, getElement, getElements } from './lib/dom';
 import { mainWrapper } from './components/mainWrapper/mainWrapper';
 import { mainTitle } from './components/mainTitle/mainTitle';
-import { getEventsForTheLast100Days } from './utils/helpers/getEventsForTheLast100Days';
+import { getEventsForTheLastNDays } from './utils/helpers/getEventsForTheLastNDays';
 import { groupEventsByDate } from './utils/helpers/groupEventsByDate';
 import { divisionsList } from './components/division/divisionsList/divisionsList';
 import { normalizeDate } from './utils/helpers/dates.helpers';
@@ -23,7 +23,7 @@ import names from './data/names.json';
 const intervalTime = 5000;
 const maxDivisionHeight = 60;
 const browserLanguage = getBrowserLanguage();
-const eventsForTheLast100Days = getEventsForTheLast100Days(events);
+const eventsForTheLast100Days = getEventsForTheLastNDays(events, 100);
 const goupedSortedByDateEvents = Object.entries(
   groupEventsByDate(eventsForTheLast100Days)
 ).sort();
@@ -130,7 +130,6 @@ let buttonStatus = 'paused';
         clearInterval(intervalId);
         buttonStatus = 'paused';
         PlayButton.setAttribute('data-status', buttonStatus);
-        return;
       }
     };
 

@@ -1,7 +1,9 @@
 import { getMs, normalizeDate, subtractDaysFromNowDate } from './dates.helpers';
 
-export const getEventsForTheLast100Days = (events) => {
-  const dateOneHundredDaysAgoInMs = getMs(subtractDaysFromNowDate(100));
+export const getEventsForTheLastNDays = (events, numberOfDays) => {
+  const dateOneHundredDaysAgoInMs = getMs(
+    subtractDaysFromNowDate(numberOfDays)
+  );
   const suitableEvents = [];
 
   for (const event of events) {
