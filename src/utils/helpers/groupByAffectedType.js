@@ -1,10 +1,10 @@
 export const groupByAffectedType = (events) => {
   const groupedByAffectedType = {};
 
-  for (const date in events) {
+  events.forEach(([date, event]) => {
     groupedByAffectedType[date] = {};
 
-    events[date].forEach((e) => {
+    event.forEach((e) => {
       const { affected_number: affectedNumbers, affected_type: affectedTypes } =
         e;
 
@@ -17,7 +17,7 @@ export const groupByAffectedType = (events) => {
         groupedByAffectedType[date][affectedType] = +affectedNumbers[index];
       });
     });
-  }
+  });
 
   return groupedByAffectedType;
 };
