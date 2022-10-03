@@ -21,22 +21,20 @@ import { contentWrapper } from './components/contentWrapper/contentWrapper';
 const intervalTime = 5000;
 const maxDivisionHeight = 60;
 const eventsForTheLast100Days = getEventsForTheLast100Days(events);
-const goupedSortedByDateEvents = Object.fromEntries(
-  Object.entries(groupEventsByDate(eventsForTheLast100Days)).sort()
-);
+const goupedSortedByDateEvents = Object.entries(
+  groupEventsByDate(eventsForTheLast100Days)
+).sort();
 const maxNumberOfEvents = Math.max(
-  ...Object.values(goupedSortedByDateEvents).map(
-    calculateNumberOfEventsInOneDate
+  ...goupedSortedByDateEvents.map(([, event]) =>
+    calculateNumberOfEventsInOneDate(event)
   )
 );
-const divisionsData = Object.entries(goupedSortedByDateEvents).map(
-  ([date, events]) => ({
-    height:
-      (calculateNumberOfEventsInOneDate(events) / maxNumberOfEvents) *
-      maxDivisionHeight,
-    date: normalizeDate(new Date(+date)),
-  })
-);
+const divisionsData = goupedSortedByDateEvents.map(([date, events]) => ({
+  height:
+    (calculateNumberOfEventsInOneDate(events) / maxNumberOfEvents) *
+    maxDivisionHeight,
+  date: normalizeDate(new Date(+date)),
+}));
 const groupedByDateAndAffectedType = groupByAffectedType(
   goupedSortedByDateEvents
 );
@@ -119,7 +117,7 @@ let buttonStatus = 'paused';
       }
     };
 
-    const Ukraine = ukraine(PlayButton);
+    const Ukraine = ukraine([PlayButton]);
     const ContentWrapper = contentWrapper([Affects, Ukraine]);
 
     const MainWrapper = mainWrapper([MainTitle, ContentWrapper, DivisionsList]);
