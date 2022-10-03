@@ -133,7 +133,6 @@ let buttonStatus = 'paused';
       ),
     ]);
     const ContentWrapper = contentWrapper([Affects, Ukraine]);
-
     const MainWrapper = mainWrapper([MainTitle, ContentWrapper, DivisionsList]);
 
     appendChild(root, MainWrapper);
