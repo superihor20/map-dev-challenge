@@ -1,6 +1,12 @@
+@import '../../assets/styles/variables.scss';
+
 .contentWrapper {
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-flow: row wrap;
+
+  @media (max-width: $breakpoint-small-screen) {
+    flex-flow: column nowrap;
+  }
 }

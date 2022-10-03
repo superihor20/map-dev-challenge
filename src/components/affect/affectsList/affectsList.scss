@@ -1,6 +1,15 @@
+@import '../../../assets/styles/variables.scss';
+
 .affectsList {
   display: flex;
   flex-flow: column nowrap;
   gap: 24px;
   min-height: 540px;
+
+  @media (max-width: $breakpoint-small-screen) {
+    flex-flow: row wrap;
+    justify-content: center;
+    min-height: 300px;
+    margin-bottom: 40px;
+  }
 }
